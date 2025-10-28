@@ -4,3 +4,4 @@ from flask import render_template
 
 
 app = Flask(__name__)
+conn = get_connection()

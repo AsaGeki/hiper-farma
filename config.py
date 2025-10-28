@@ -22,5 +22,5 @@ def get_connection():
         )
         return conn
     except psycopg2.Error as e:
-        print("❌ Erro ao conectar ao banco:", e)
+        print("Erro ao conectar ao banco:", e)
         return None

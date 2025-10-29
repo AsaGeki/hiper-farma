@@ -1,16 +1,16 @@
-from flask import Flask, render_template, request, redirect
-from config import get_connection
+from flask import Flask
+from config import Config
 
+def create_app():
+    app = Flask(__name__)
+    app.config.from_object(Config)
 
-app = Flask(__name__)
+    # Aqui você pode inicializar banco, boto3 etc
+    # db.init_app(app)
+    # s3_client = boto3.client(...)
 
-@app.route('/')
-def index():
-    conn = get_connection()
-    cur = conn.cursor()
-    cur.execute('''SELECT * FROM worker ORDER BY id_client ASC;''')
-    worker = cur.fetchall()
-    cur.close()
-    conn.close()
-    s3_file = https://asageki.s3.sa-east-1.amazonaws.com/teste.jpg
-    return render_template('index.html', worker=worker, s3_file=s3_file)
+    # Registrar blueprints
+    from app.routes import main
+    app.register_blueprint(main)
+
+    return app

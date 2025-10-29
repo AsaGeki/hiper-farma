@@ -24,3 +24,16 @@ def get_connection():
     except psycopg2.Error as e:
         print("❌ Erro ao conectar ao banco:", e)
         return None
+    
+S3_BUCKET = os.getenv("S3_BUCKET")
+S3_REGION = os.getenv
+S3_KEY = os.getenv("S3_KEY")
+S3_SECRET = os.getenv("S3_SECRET")
+
+def get_s3_config():
+    return {
+        "bucket": S3_BUCKET,
+        "region": S3_REGION,
+        "access_key": S3_KEY,
+        "secret_key": S3_SECRET
+    }

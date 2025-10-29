@@ -1,5 +1,5 @@
 from flask import Flask
-from config import Config
+from config import get_connection, get_s3_config
 
 def create_app():
     app = Flask(__name__)

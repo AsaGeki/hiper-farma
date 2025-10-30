@@ -1,5 +1,5 @@
 from flask import Flask
-from routes import main
+from app.routes import main
 
 def create_app():
     app = Flask(__name__)

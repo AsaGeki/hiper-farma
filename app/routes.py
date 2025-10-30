@@ -5,6 +5,8 @@ main = Blueprint('main', __name__)
 @main.route('/')
 def index():
     conn = get_db_connection()
+    if not conn:
+        print("Erro ao conectar no banco")
     cur = conn.cursor()
     cur.execute('SELECT * FROM worker;')
     worker = cur.fetchall()

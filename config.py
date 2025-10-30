@@ -15,11 +15,11 @@ DB_PORT = os.getenv("DB_PORT")
 def get_db_connection():
     try:
         db_connection = psycopg2.connect(
-            host=DB_HOST,
-            database=DB_NAME,
-            user=DB_USER,
-            password=DB_PASS,
-            port=DB_PORT
+            host=str(DB_HOST),
+            database=str(DB_NAME),
+            user=str(DB_USER),
+            password=str(DB_PASS),
+            port=str(DB_PORT)
         )
         return db_connection
     except psycopg2.Error as e:

@@ -2,81 +2,44 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Workers</title>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 90%;
-            margin: 20px auto;
-        }
-        th, td {
-            border: 1px solid #333;
-            padding: 8px 12px;
-            text-align: left;
-        }
-        th {
-            background-color: #444;
-            color: #fff;
-        }
-        tr:nth-child(even) {
-            background-color: #eee;
-        }
-        img.s3-file {
-            display: block;
-            margin: 20px auto;
-            max-width: 400px;
-        }
-        h1, h2 {
-            text-align: center;
-        }
-    </style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Workers - Flask S3 Teste</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
+    <div class="container">
+        <h1>Teste Flask + S3</h1>
 
-    <h1>Lista de Workers</h1>
+        <div class="image-section">
+            <h2>Imagem do S3:</h2>
+            <img src="{{ image }}" alt="Imagem do S3" class="s3-image">
+        </div>
 
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Nome</th>
-                <th>Sobrenome</th>
-                <th>CPF</th>
-                <th>Picture</th>
-                <th>Hiring Date</th>
-                <th>Operation</th>
-                <th>Badge Check</th>
-                <th>Contact</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for worker in workers %}
-            <tr>
-                <td>{{ worker[0] }}</td>
-                <td>{{ worker[1] }}</td>
-                <td>{{ worker[2] }}</td>
-                <td>{{ worker[3] }}</td>
-                <td>
-                    {% if worker[4] %}
-                        <img src="{{ worker[4] }}" alt="Foto" width="50">
-                    {% else %}
-                        N/A
-                    {% endif %}
-                </td>
-                <td>{{ worker[5] }}</td>
-                <td>{{ worker[6] }}</td>
-                <td>{{ 'Sim' if worker[7] else 'Não' }}</td>
-                <td>{{ worker[8] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-
-    {% if s3_file %}
-    <hr>
-    <h2>Arquivo do S3</h2>
-    <img class="s3-file" src="{{ s3_file }}" alt="Arquivo do S3">
-    {% endif %}
-
+        <div class="table-section">
+            <h2>Lista de Workers</h2>
+            {% if worker %}
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nome</th>
+                        <th>Outros Dados</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for w in worker %}
+                    <tr>
+                        <td>{{ w[0] }}</td>
+                        <td>{{ w[1] }}</td>
+                        <td>{{ w[2] if w|length > 2 else '' }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+            {% else %}
+                <p class="empty">Nenhum worker encontrado no banco de dados.</p>
+            {% endif %}
+        </div>
+    </div>
 </body>
 </html>

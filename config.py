@@ -1,6 +1,7 @@
 import os
 import psycopg2
 from dotenv import load_dotenv
+import boto3
 
 load_dotenv()
 
@@ -11,29 +12,34 @@ DB_PASS = os.getenv("DB_PASS")
 DB_PORT = os.getenv("DB_PORT")
 
 
-def get_connection():
+def get_db_connection():
     try:
-        conn = psycopg2.connect(
+        db_connection = psycopg2.connect(
             host=DB_HOST,
             database=DB_NAME,
             user=DB_USER,
             password=DB_PASS,
             port=DB_PORT
         )
-        return conn
+        return db_connection
     except psycopg2.Error as e:
         print("Erro ao conectar ao banco:", e)
         return None
     
 S3_BUCKET = os.getenv("S3_BUCKET")
-S3_REGION = os.getenv
-S3_KEY = os.getenv("S3_KEY")
-S3_SECRET = os.getenv("S3_SECRET")
+S3_REGION = os.getenv("S3_REGION")
+S3_KEY = os.getenv("AWS_ACCESS_KEY_ID")
+S3_SECRET = os.getenv("AWS_SECRET_ACCESS_KEY")
 
-def get_s3_config():
-    return {
-        "bucket": S3_BUCKET,
-        "region": S3_REGION,
-        "access_key": S3_KEY,
-        "secret_key": S3_SECRET
-    }
+def get_s3_client():
+    try:
+        s3_client = boto3.client(
+            's3',
+            region_name=S3_REGION,
+            aws_access_key_id=S3_KEY,
+            aws_secret_access_key=S3_SECRET
+        )
+        return s3_client
+    except Exception as e:
+        print("Erro ao criar cliente S3:", e)
+        return None

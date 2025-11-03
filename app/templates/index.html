@@ -2,44 +2,17 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Workers - Flask S3 Teste</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Página Inicial</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
+        a { text-decoration: none; color: #007BFF; }
+        a:hover { text-decoration: underline; }
+    </style>
 </head>
 <body>
-    <div class="container">
-        <h1>Teste Flask + S3</h1>
-
-        <div class="image-section">
-            <h2>Imagem do S3:</h2>
-            <img src="{{ image }}" alt="Imagem do S3" class="s3-image">
-        </div>
-
-        <div class="table-section">
-            <h2>Lista de Workers</h2>
-            {% if worker %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>ID</th>
-                        <th>Nome</th>
-                        <th>Outros Dados</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for w in worker %}
-                    <tr>
-                        <td>{{ w[0] }}</td>
-                        <td>{{ w[1] }}</td>
-                        <td>{{ w[2] if w|length > 2 else '' }}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-            {% else %}
-                <p class="empty">Nenhum worker encontrado no banco de dados.</p>
-            {% endif %}
-        </div>
-    </div>
+    <h1>Bem-vindo ao Sistema de Workers</h1>
+    <p>
+        <a href="{{ url_for('workers.workers_list') }}">Ver lista de trabalhadores</a>
+    </p>
 </body>
 </html>

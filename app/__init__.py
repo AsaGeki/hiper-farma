@@ -1,8 +1,8 @@
 from flask import Flask
-from app.routes import main, worker_tables
+from app.routes import main, workers
 
 def create_app():
     app = Flask(__name__)
     app.register_blueprint(main)
-    app.register_blueprint(worker_tables)
+    app.register_blueprint(workers)
     return app

@@ -19,3 +19,16 @@ def index():
     ExpiresIn=3600
     )
     return render_template('index.html', worker=worker, image=image_url)
+
+worker_tables = Blueprint('worker_tables', __name__)
+@worker_tables.route('/worker_tables')
+def worker_tables():
+    conn = get_db_connection()
+    if not conn:
+        print("Erro ao conectar no banco")
+    cur = conn.cursor()
+    cur.execute('SELECT first_name, last_name, cpf, hiring_date, worker_role FROM worker;')
+    worker = cur.fetchall()
+    cur.close()
+    conn.close()
+    return render_template('worker_tables.html', worker=worker)

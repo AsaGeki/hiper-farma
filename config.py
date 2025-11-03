@@ -5,6 +5,7 @@ import boto3
 
 load_dotenv()
 
+S3_BUCKET = os.getenv("S3_BUCKET")
 # Conexão com a AWS PostgreSQL
 def get_db_connection():
     try:

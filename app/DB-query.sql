@@ -40,3 +40,21 @@ CREATE TABLE department_worker (
     is_submanager BOOLEAN DEFAULT FALSE,
     PRIMARY KEY (worker_id, department_id)
 );
+
+CREATE TABLE roles (
+
+    role_id SERIAL PRIMARY KEY,
+    role_name TEXT NOT NULL UNIQUE,
+    role_description TEXT,
+
+);
+
+CREATE TABLE operation (
+
+    operation_id SERIAL PRIMARY KEY,
+    operation_name TEXT,
+    duration DATE
+
+);
+
+

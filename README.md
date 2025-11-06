@@ -10,10 +10,11 @@ O objetivo original é **facilitar e apoiar o trabalho de um amigo** em suas fun
 * **Backend:** Python, Flask
 * **Banco de dados:** PostgreSQL (AWS RDS)
 * **Front-end:** HTML, CSS
+* **Armazenamento em Nuvem** AWS S3
 
 ---
 
-## Estrutura do Projeto
+## Estrutura do Projeto Original
 
 ```plaintext
 meu_projeto/
@@ -28,12 +29,3 @@ meu_projeto/
 ├─ run.py
 └─ README.md
 ```
-
----
-
-## Contribuições
-
-* **SQL e Python:** [AsaGeki](https://github.com/AsaGeki)
-* **HTML e CSS:** [GuilhermeDosPassosSouza](https://github.com/GuilhermeDosPassosSouza)
-
----

@@ -1,7 +1,5 @@
 from flask import Blueprint, render_template, request, redirect, flash
 from config import get_db_connection, get_s3_client, S3_BUCKET
-from PIL import
-
 
 main = Blueprint('main', __name__)
 workers = Blueprint('workers', __name__)
@@ -51,6 +49,7 @@ def add_worker():
     
     if not image:
         flash('Arquivo obrigatório', 'error')
+        
         
     
     

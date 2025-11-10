@@ -1,5 +1,7 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, flash
 from config import get_db_connection, get_s3_client, S3_BUCKET
+from PIL import
+
 
 main = Blueprint('main', __name__)
 workers = Blueprint('workers', __name__)
@@ -43,11 +45,26 @@ def add_worker():
     db = get_db_connection()
     s3 = get_s3_client()
     cursor = db.cursor()
+    image = request.file.get('image')
+    max_size_image = 5 * 1024 * 1024
+    safe_formats_image = {'PNG', 'JPG'}
+    
+    if not image:
+        flash('Arquivo obrigatório', 'error')
+        
+    
+    
+    
+    
+    
+    
+    
+    
     first_name = request.form['first_name'].lower().strip()
     last_name = request.form['last_name'].lower().strip()
     cpf = request.form['cpf'].lower().strip()
-    picture = request.form['picture'].lower().strip()
-    hiring_date = request.form['hiring_date'].lower().strip()
+    
+    hiring_date = request.form['hiring_date']
     operation = request.form['operation'].lower().strip()
     contact = request.form['contact'].lower().strip()
     worker_role = request.form['worker_role'].lower().strip()

@@ -1,5 +1,10 @@
-from flask import Blueprint, render_template, request, redirect
+from flask import Blueprint, render_template, request, redirect, flash
 from config import get_db_connection, get_s3_client, S3_BUCKET
+
+def flash_validation(field_value: str, field_label: str) -> bool:
+    if not field_value:
+        flash(f'{field_label} é obrigatório')
+        return redirect(f'/{route}')
 
 main = Blueprint('main', __name__)
 workers = Blueprint('workers', __name__)
@@ -25,36 +30,5 @@ def workers_list():
     connect.close()
     return render_template('worker_list.html', worker_list = worker_list)
 
-@add_roles.route('/add_role', methods=['POST'])
-def add_role():
-    connect = get_db_connection()
-    cursor = connect.cursor()
-    role = request.form['role'].lower().strip()
-    cursor.execute('''
-                   INSERT INTO roles(name)
-                   VALUES ('%s')
-                   ''', role)
-    cursor.close()
-    connect.close()
-    return redirect('/workers')
 
-@add_workers.route('/add_worker', methods=['POST'])
-def add_worker():
-    db = get_db_connection()
-    s3 = get_s3_client()
-    cursor = db.cursor()
-    first_name = request.form['first_name'].lower().strip()
-    last_name = request.form['last_name'].lower().strip()
-    cpf = request.form['cpf'].lower().strip()
-    picture = request.form['picture'].lower().strip()
-    hiring_date = request.form['hiring_date'].lower().strip()
-    operation = request.form['operation'].lower().strip()
-    contact = request.form['contact'].lower().strip()
-    worker_role = request.form['worker_role'].lower().strip()
-    gender = request.form['gender'].lower().strip()
-    cursor.execute('''
-                   INSERT INTO worker (first_name, last_name, cpf, picture, hiring_date, 
-                   operation, contact, worker_role, gender)
-                   VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s,)
-                   ''', )
 

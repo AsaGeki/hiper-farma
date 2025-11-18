@@ -2,36 +2,23 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Lista de Workers</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Detalhes do Funcionário</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
-        th, td { border: 1px solid #ccc; padding: 10px; text-align: left; }
-        th { background-color: #007BFF; color: white; }
-        tr:nth-child(even) { background-color: #e9e9e9; }
-        a { text-decoration: none; color: #007BFF; }
+        body { font-family: Arial, sans-serif; padding: 20px; background: #f4f4f4; }
+        .card { background: #fff; padding: 20px; border-radius: 8px; max-width: 500px; margin: auto; box-shadow: 0 0 5px rgba(0,0,0,0.2); }
+        h2 { text-align: center; color: #333; }
+        p { margin: 8px 0; }
+        a { display: block; text-align: center; margin-top: 20px; text-decoration: none; color: #007BFF; }
     </style>
 </head>
 <body>
-    <h1>Lista de Trabalhadores</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>CPF</th>
-                <th>Nome Completo</th>
-                <th>Departamento</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for worker in worker_list %}
-            <tr>
-                <td>{{ worker[0] }}</td>
-                <td>{{ worker[1] }}</td>
-                <td>{{ worker[2] }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <p><a href="{{ url_for('main.index') }}">Voltar para a página inicial</a></p>
+    <div class="card">
+        <h2>{{ worker[0] }} {{ worker[1] }}</h2>
+        <p><strong>CPF:</strong> {{ worker[2] }}</p>
+        <p><strong>Data de Contratação:</strong> {{ worker[3] }}</p>
+        <p><strong>Cargo:</strong> {{ worker[4] }}</p>
+        <a href="/worker_tables">Voltar à lista</a>
+    </div>
 </body>
 </html>

@@ -1,8 +1,15 @@
 CREATE EXTENSION IF NOT EXISTS "pgcrypto";
 
-CREATE TYPE w_role AS ENUM ('operador de caixa', 'perfumista', 'farmacêutico');
+CREATE TYPE w_role AS ENUM (
+    'operador de caixa',
+    'perfumista',
+    'farmacêutico'
+);
+
 CREATE TYPE w_gender AS ENUM ('masculino', 'feminino');
+
 CREATE TYPE w_operation AS ENUM ('ativo', 'inativo');
+
 CREATE TYPE b_category AS ENUM ('trabalhador', 'diretoria');
 
 CREATE TABLE worker (
@@ -31,7 +38,9 @@ CREATE TABLE department (
     regional TEXT NOT NULL,
     city TEXT NOT NULL,
     department_state TEXT NOT NULL,
-    manager UUID UNIQUE REFERENCES worker(worker_id) ON DELETE SET NULL
+    manager UUID UNIQUE REFERENCES worker(worker_id) ON DELETE
+    SET
+        NULL
 );
 
 CREATE TABLE department_worker (
@@ -42,19 +51,13 @@ CREATE TABLE department_worker (
 );
 
 CREATE TABLE roles (
-
     role_id SERIAL PRIMARY KEY,
     role_name TEXT NOT NULL UNIQUE,
     role_description TEXT,
-
 );
 
 CREATE TABLE operation (
-
     operation_id SERIAL PRIMARY KEY,
     operation_name TEXT,
     duration DATE
-
 );
-
-

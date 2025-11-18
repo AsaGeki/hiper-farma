@@ -1,6 +1,6 @@
 from flask import Flask
-from app.routes import main
-from app.routes import workers
+from app.routes.main_routes import main
+from app.routes.worker_routes import workers
 
 def create_app():
     app = Flask(__name__)

@@ -1,27 +1,48 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Criar Worker</title>
-</head>
-<body>
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='style.css') }}"
+    />
+  </head>
+  <body>
     <h1>Novo Trabalhador</h1>
 
     <form method="POST">
+      <label for="first_name">Primeiro Nome:</label><br />
+      <input
+        type="text"
+        id="first_name"
+        name="first_name"
+        placeholder="Digite o primeiro nome"
+        required
+      /><br /><br />
 
-        <label for="first_name">Primeiro Nome:</label><br>
-        <input type="text" id="first_name" name="first_name" placeholder="Digite o primeiro nome" required><br><br>
+      <label for="last_name">Sobrenome:</label><br />
+      <input
+        type="text"
+        id="last_name"
+        name="last_name"
+        placeholder="Digite o sobrenome"
+        required
+      /><br /><br />
 
-        <label for="last_name">Sobrenome:</label><br>
-        <input type="text" id="last_name" name="last_name" placeholder="Digite o sobrenome" required><br><br>
+      <label for="cpf">CPF:</label><br />
+      <input
+        type="text"
+        id="cpf"
+        name="cpf"
+        placeholder="Somente números"
+        required
+      /><br /><br />
 
-        <label for="cpf">CPF:</label><br>
-        <input type="text" id="cpf" name="cpf" placeholder="Somente números" required><br><br>
-
-        <button type="submit">Salvar</button>
+      <button type="submit">Salvar</button>
     </form>
 
     <p><a href="/">Voltar</a></p>
-</body>
+  </body>
 </html>

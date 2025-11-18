@@ -11,11 +11,27 @@
   </head>
   <body>
     <div class="card">
-      <h2>{{ worker[0] }} {{ worker[1] }}</h2>
-      <p><strong>CPF:</strong> {{ worker[2] }}</p>
-      <p><strong>Data de Contratação:</strong> {{ worker[3] }}</p>
-      <p><strong>Cargo:</strong> {{ worker[4] }}</p>
-      <a href="/worker_tables">Voltar à lista</a>
+      <h1>Lista de Trabalhadores</h1>
+
+      <table>
+        <thead>
+          <tr>
+            <th>CPF</th>
+            <th>Nome</th>
+            <th>Departamento</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          {% for worker in workers %}
+          <tr>
+            <td>{{ worker[0] }}</td>
+            <td>{{ worker[1] }}</td>
+            <td>{{ worker[2] }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
     </div>
   </body>
 </html>
